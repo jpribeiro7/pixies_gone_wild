@@ -1,0 +1,16 @@
+{
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "tsc": "tsc -t ES2016 --lib es2016,DOM src/index.ts"
+  },
+  "main": "src/index.ts",
+  "dependencies": {
+    "pixi.js": "^4.8.4"
+  },
+  "devDependencies": {
+    "tslint": "~5.8.0",
+    "typescript": "~2.8.3"
+  },
+  "private": true
+}
