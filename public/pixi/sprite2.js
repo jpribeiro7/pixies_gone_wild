@@ -23,6 +23,7 @@ window.onload = function() {
 
     const aspRatio = app.renderer.width / app.renderer.height;
     const numberSprites = 144;
+    let finalX = 0;
 
     function setup() {
         for(let i  = 0; i < numberSprites; i++){
@@ -49,10 +50,6 @@ window.onload = function() {
     function animation(sprite, delta) {
         sprite.timer += delta;
 
-        if(sprite.id === 1){
-            console.log(delta);
-        }
-
         //timeRatio is to check when a determined sprite can move
         const timeRatio = sprite.timer/(sprite.id*60);
 
@@ -61,8 +58,13 @@ window.onload = function() {
                 sprite.canMove = true;
                 sprite.timeStart = sprite.timer;
             }
-            sprite.x += 3 + delta;
-            sprite.y += sprite.vy;
+            sprite.x += app.renderer.width/300 * delta;
+            sprite.y += sprite.vy*delta;
+        }
+        else if (sprite.canMove && sprite.timer > sprite.timeStart + 120){
+            sprite.y = sprite.finalY; //this is just to force the final position and not be unaligned
+            if(finalX===0) finalX = sprite.x;
+            else sprite.x = finalX;
         }
     }
 };
