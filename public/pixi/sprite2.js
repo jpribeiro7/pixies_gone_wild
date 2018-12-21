@@ -38,7 +38,7 @@ window.onload = function() {
             sprite.x = app.renderer.width / 6;
             sprite.y = i*4;
             sprite.finalY = (numberSprites-1)*4 - sprite.y;
-            sprite.vy = (sprite.finalY - sprite.y)/200;
+            sprite.vy = (sprite.finalY - sprite.y)/120;
 
             app.stage.addChild(sprite);
 
@@ -49,10 +49,14 @@ window.onload = function() {
     function animation(sprite, delta) {
         sprite.timer += delta;
 
-        //timeRatio is to check when a determined sprite can move
-        const timeRatio = sprite.timer/(sprite.id*100);
+        if(sprite.id === 1){
+            console.log(delta);
+        }
 
-        if(timeRatio > 1 && (!sprite.canMove || sprite.timer <= sprite.timeStart + 200)){
+        //timeRatio is to check when a determined sprite can move
+        const timeRatio = sprite.timer/(sprite.id*60);
+
+        if(timeRatio > 1 && (!sprite.canMove || sprite.timer <= sprite.timeStart + 120)){
             if(!sprite.canMove){
                 sprite.canMove = true;
                 sprite.timeStart = sprite.timer;
