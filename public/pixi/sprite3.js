@@ -14,15 +14,16 @@ window.onload = function() {
         transparent: true
     });
 
-    let path1 = "assets/squirtle1.gif";
-    let path2 = "assets/bunny.png";
+    let path = "assets/random_emoji/";
+    let imagePaths = [];
+    for(let i = 1; i <= 6; i++){
+        imagePaths.push(path + i + ".png");
+        loader.add(imagePaths[i-1]);
+    }
 
     document.body.appendChild(app.view);
 
-    loader
-        .add(path1)
-        .add(path2)
-        .load(setup);
+    loader.load(setup);
     
     const aspRatio = app.renderer.width / app.renderer.height;
     const numberElements = 3;
@@ -32,9 +33,10 @@ window.onload = function() {
         let container = new Container();
         let objects = [];
         let counter = 0;
-        let extraWidth = 0;
+        let bagOfWords = ["hello","goodbye","friend","uno","dos","crunch","pi","word","alleluia"]
 
         function getText() {
+            let text = bagOfWords[Math.floor(Math.random()*bagOfWords.length)];
             let style = new TextStyle({
                 fontFamily: "Arial",
                 fontSize: 36,
@@ -47,12 +49,13 @@ window.onload = function() {
                 dropShadowAngle: Math.PI / 6,
                 dropShadowDistance: 6,
             });
-            return new Text("Hello", style);
+            return new Text(text, style);
         }
 
         function getImage() {
+            let imagePath = imagePaths[Math.floor(Math.random()*imagePaths.length)];
             const sprite = new Sprite(
-                resources[path1].texture
+                resources[imagePath].texture
             );
             sprite.width = sprite.width / aspRatio;
             sprite.height = sprite.height / aspRatio;
