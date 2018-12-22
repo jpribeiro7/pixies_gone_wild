@@ -11,14 +11,12 @@ window.onload = function() {
         transparent: true
     });
 
-    let path1 = "assets/squirtle1.gif";
-    let path2 = "assets/bunny.png";
+    let path1 = "assets/back2.png";
 
     document.body.appendChild(app.view);
 
     loader
         .add(path1)
-        .add(path2)
         .load(setup);
 
     const aspRatio = app.renderer.width / app.renderer.height;
@@ -36,7 +34,7 @@ window.onload = function() {
             sprite.canMove = false;
             sprite.width = sprite.width / aspRatio;
             sprite.height = sprite.height / aspRatio;
-            sprite.x = app.renderer.width / 6;
+            sprite.x = app.renderer.width / 10;
             sprite.y = i*4;
             sprite.finalY = (numberSprites-1)*4 - sprite.y;
             sprite.vy = (sprite.finalY - sprite.y)/120;
