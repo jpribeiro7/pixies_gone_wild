@@ -59,6 +59,17 @@ window.onload = function() {
             );
             sprite.width = sprite.width / aspRatio;
             sprite.height = sprite.height / aspRatio;
+
+            //maximize the sprite size
+            const maxSize = (app.renderer.width > app.renderer.height) ? app.renderer.width/8 : app.renderer.height/8;
+            if(sprite.width > maxSize){
+                sprite.height = maxSize*sprite.height/sprite.width;
+                sprite.width = maxSize;
+            }
+            if(sprite.height > maxSize){
+                sprite.width = maxSize*sprite.width/sprite.height;
+                sprite.height = maxSize;
+            }
             return sprite;
         }
 
